@@ -19,18 +19,16 @@ object Problem2 {
     val promotionCombos = ListBuffer[PromotionCombo]()
     
     //Loop through all the promotions and generate combinations with each individual promotion
-    //Will end up finding all possible combinations
     for ((promotion, index) <- allPromotions.zipWithIndex) {
       
-      //we know that we've already traversed the previous promotions
-      //so as an optimization we can give combinablePromotions only the part of the list that hasn't been traversed
+      //As an optimization we can give combinablePromotions only the part of the list that hasn't been traversed
         for (newCombo <- combinablePromotions(promotion.code, allPromotions.drop(index + 1))) {
           
-          //I'm not happy with this part
-          //it turns out that we could potentially general subsets which are invalid because they were a part of previous combinations
+          //It turns out that we could potentially general subsets which are invalid because they were a part of previous combinations
           //so we need to look to not add the combination if it occured as a subset before
-          //There's probably a better to do this during the traversal
-          //this loop adds additional traversal overhead to the algorithm
+          //This loop adds additional traversal overhead to the algorithm
+          //I created another traversal which does not need this, but left this one as the primary
+          //because this implementation is more straightforward
           breakable {
             for (existingCombo <- promotionCombos) {
               
@@ -51,7 +49,7 @@ object Problem2 {
 
   /**
    * Nothing fancy
-   * I couldn't find a standalong subset method
+   * I couldn't find a standalone subset method
    * From what I've read we could put these in sets and use the built in subset method
    * But that would mean creating 2 sets every time we compare which seems worse for what we need
    * 
@@ -81,7 +79,6 @@ object Problem2 {
     //using a ListBuffer because we are going remove promotions from this list that we don't need to traverse anymore
     val promotionsToTraverse = compatiblePromotions.to[ListBuffer]
     
-    //Create a ListBuffer of combinations we've identified that we want to return
     val promotionCombos = ListBuffer[PromotionCombo]()
     
     while (!promotionsToTraverse.isEmpty) {
