@@ -18,7 +18,9 @@ Now, make sure you are in the root directory of this repository and run:
 Once the compilation is complete, now you can execute the problems by running:
 
 `scala -classpath . timliu.Problem1`
+
 and
+
 `scala -classpath . timliu.Problem2`
 
 The expected output should appear as per the assignment
