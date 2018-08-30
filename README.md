@@ -3,7 +3,7 @@
 This was the take home programming assignment for Tim Liu
 
 # Compilation and Execution
-There were are a lot of different ways of packaging and running code, but I chose a method which was quick and fairly straight forward.
+There are a lot of different ways of packaging and running code. I chose a method which was quick and fairly straight forward.
 
 First ensure that scalac is installed on the command line.  I installed it on my mac using:
 
